@@ -14,7 +14,7 @@ class ApiGatewayTest {
   @Test
   fun get() {
     every { http.send<String>(any(), any()).body() } returns "{body}"
-    assertThat(api.get("/users/angryziber")).isEqualTo("{body}")
+    assertThat(api.getRaw("/users/angryziber")).isEqualTo("{body}")
     verify { http.send<String>(match { it.method() == "GET" && it.uri().path == "/users/angryziber" }, any()) }
   }
 }

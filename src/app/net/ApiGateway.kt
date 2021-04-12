@@ -1,19 +1,24 @@
 package app.net
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpClient.Redirect.NORMAL
 import java.net.http.HttpRequest
-import java.net.http.HttpResponse
+import java.net.http.HttpResponse.BodyHandlers.ofInputStream
 
 class ApiGateway(private val http: HttpClient) {
   private val baseUrl = "https://api.github.com"
+  companion object {
+    val json = jacksonObjectMapper().setPropertyNamingStrategy(SnakeCaseStrategy()).configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
+  }
 
-  fun get(path: String) = http.send(request(path).GET().build(), HttpResponse.BodyHandlers.ofString()).body()
+  fun getRaw(path: String) = http.send(request(path).GET().build(), ofInputStream()).body()
+  inline fun <reified T> get(path: String): T = getRaw(path).use { json.readValue(it, T::class.java) }
 
   private fun request(path: String) = HttpRequest.newBuilder(URI(baseUrl + path)).header("Accept", "application/vnd.github.v3+json")
-}
-
-fun main() {
-  println(ApiGateway(HttpClient.newBuilder().followRedirects(NORMAL).build()).get("/repos/codeborne/selenide"))
 }
