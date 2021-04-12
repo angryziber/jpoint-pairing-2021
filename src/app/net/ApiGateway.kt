@@ -2,6 +2,7 @@ package app.net
 
 import java.net.URI
 import java.net.http.HttpClient
+import java.net.http.HttpClient.Redirect.NORMAL
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
@@ -14,5 +15,5 @@ class ApiGateway(private val http: HttpClient) {
 }
 
 fun main() {
-  println(ApiGateway(HttpClient.newHttpClient()).get("/repos/codeborne/selenide"))
+  println(ApiGateway(HttpClient.newBuilder().followRedirects(NORMAL).build()).get("/repos/codeborne/selenide"))
 }
