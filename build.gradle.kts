@@ -14,14 +14,14 @@ repositories {
 
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-  implementation("org.jetbrains.kotlin:kotlin-reflection")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.2")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
+  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.3")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.3")
 
   testImplementation(kotlin("test-junit5"))
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
-  testImplementation("org.assertj:assertj-core:3.15.0")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+  testImplementation("org.assertj:assertj-core:3.19.0")
   testImplementation("io.mockk:mockk:1.11.0")
 }
 
