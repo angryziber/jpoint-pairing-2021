@@ -9,3 +9,6 @@ that we will use during the master-class.
 
 * [Anton Keks](https://github.com/angryziber/)
 * [Andrei Solntsev](https://github.com/asolntsev)
+
+We will use Github API:
+https://docs.github.com/en/rest/reference/search
