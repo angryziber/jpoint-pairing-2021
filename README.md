@@ -9,16 +9,3 @@ that we will use during the master-class.
 
 * [Anton Keks](https://github.com/angryziber/)
 * [Andrei Solntsev](https://github.com/asolntsev)
-
-## Steps
-
-* ApiGateway
-* RepositoryRepository
-* main without injector  
-* Injector
-    * require
-    * register
-* main with Injector
-* ResultRepository
-* ResultComparator
-* main
