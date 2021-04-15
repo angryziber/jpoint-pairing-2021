@@ -16,8 +16,8 @@ class RepositoryRepositoryTest {
   }
 
   @Test
-  fun `search for keyword`() = runBlocking {
-    val result = repository.search("selenide")
+  fun `search for keyword`() {
+    val result = runBlocking { repository.search("selenide") }
     assertThat(result.totalCount).isEqualTo(1664)
     assertThat(result.items).hasSize(30)
     assertThat(result.items[0].fullName).isEqualTo("selenide/selenide")
