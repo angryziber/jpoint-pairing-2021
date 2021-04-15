@@ -1,6 +1,7 @@
 package app.net
 
 import com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SNAKE_CASE
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import kotlinx.coroutines.future.await
@@ -12,7 +13,7 @@ import java.net.http.HttpResponse.BodyHandlers.ofInputStream
 class ApiGateway(private val http: HttpClient) {
   private val baseUrl = "https://api.github.com"
   companion object {
-    val json = jacksonObjectMapper().setPropertyNamingStrategy(SnakeCaseStrategy()).configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
+    val json = jacksonObjectMapper().setPropertyNamingStrategy(SNAKE_CASE).configure(FAIL_ON_UNKNOWN_PROPERTIES, false)
   }
 
   suspend fun getRaw(path: String) = http.sendAsync(request(path).GET().build(), ofInputStream()).await().body()
