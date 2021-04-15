@@ -16,8 +16,8 @@ that we will use during the master-class.
 * RepositoryRepository
 * main without injector  
 * Injector
-** require
-** register
+    * require
+    * register
 * main with Injector
 * ResultRepository
 * ResultComparator
