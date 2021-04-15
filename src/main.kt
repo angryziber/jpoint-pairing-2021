@@ -6,5 +6,5 @@ fun main() {
   val http = HttpClient.newHttpClient()
   val api = ApiGateway(http)
   val repo = RepositoryRepository(api)
-  println(repo.search("selenide", 3))
+  repo.search("selenide").items.forEach { println(it.fullName) }
 }
